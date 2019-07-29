@@ -107,3 +107,4 @@ dkms.conf
 cmake-build-debug/
 tree/include/
 cmake-build-debug
+.idea
