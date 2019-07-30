@@ -105,6 +105,5 @@ dkms.conf
 .idea/modules.xml
 .idea/workspace.xml
 cmake-build-debug/
-tree/include/
 cmake-build-debug
 .idea
