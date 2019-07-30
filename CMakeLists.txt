@@ -7,5 +7,5 @@ set(CMAKE_C_STANDARD 11)
 
 add_subdirectory(list)
 add_subdirectory(tree)
-
+add_subdirectory(stack)
 
