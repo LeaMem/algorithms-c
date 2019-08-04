@@ -16,43 +16,56 @@
  * };
  */
 
-typedef struct Node{
-    int key;
-    int rest;
-}Node;
+bool findTarget(struct TreeNode *root, int k) {
 
-
-bool find(struct TreeNode * root, Node * node, int *index, int target){
-
-    if(!root){
-        return false;
-    }
-
-    bool ansL = find(root->left, node, index, target);
-
-
-    int rest = target - root->val;
-    for(int i = 0; i < *index; i++){
-        if(node[i].rest == rest){
-            return true;
-        }
-    }
-
-    Node tmp = {root->val, rest};
-    node[++(*index)] = tmp;
-
-
-    bool ansR = find(root->right, node, index, target);
-
-    return ansL || ansR;
-
-}
-
-bool findTarget(struct TreeNode* root, int k){
-    Node node[8000];
+    struct TreeNode *stack[4000] = {NULL};
+    int set[4000];
     int index = -1;
+    int nodeLen = -1;
+
+    struct TreeNode *tmp = root;
+
+    while (tmp || index >= 0) {
+
+        while (tmp) {
+            stack[++index] = tmp;
+            tmp = tmp->left;
+        }
+
+        //pop
+        tmp = stack[index--];
+
+        if (tmp) {
+
+            int rest = k - tmp->val;
+            for (int i = 0; i <= nodeLen; i++) {
+                if (tmp->val == set[i]) {
+                    return true;
+                }
+            }
+            set[++nodeLen] = rest;
+            tmp = tmp->right;
+        }
+
+    }
 
 
-    return find(root, node, &index, k);
+    return false;
 }
 
+int main() {
+
+    struct TreeNode two = {2, NULL, NULL};
+    struct TreeNode four = {4, NULL, NULL};
+    struct TreeNode seven = {7, NULL, NULL};
+    struct TreeNode three = {3, &two, &four};
+    struct TreeNode six = {6, NULL, &seven};
+    struct TreeNode five = {5, &three, &six};
+
+    bool ans = findTarget(&five, 9);
+
+    printf("%d\n", ans);
+
+
+    return 0;
+}
