@@ -23,6 +23,6 @@ add_executable(226 226.c)
 add_executable(993 993.c)
 add_executable(235 235.c)
 add_executable(257 257.c)
-
+add_executable(687 687.c)
 
 target_link_libraries(257 kazusa)
