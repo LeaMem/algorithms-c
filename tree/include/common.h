@@ -11,4 +11,6 @@ struct TreeNode {
     struct TreeNode *right;
 };
 
+struct TreeNode *create();
+
 #endif //LEETCODE_C_COMMON_H

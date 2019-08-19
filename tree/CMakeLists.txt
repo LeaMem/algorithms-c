@@ -9,6 +9,7 @@ set(CMAKE_C_STANDARD 11)
 
 #aux_source_directory(. treeSource)
 
+add_subdirectory(include)
 
 add_executable(501 501.c)
 add_executable(107 107.c)
@@ -21,3 +22,7 @@ add_executable(404 404.c)
 add_executable(226 226.c)
 add_executable(993 993.c)
 add_executable(235 235.c)
+add_executable(257 257.c)
+
+
+target_link_libraries(257 kazusa)
