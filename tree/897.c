@@ -15,9 +15,9 @@
  * };
  */
 
-void recreate(struct TreeNode* root, struct TreeNode * head){
-    if(!root){
-        return ;
+void recreate(struct TreeNode *root, struct TreeNode *head) {
+    if (!root) {
+        return;
     }
 
     recreate(root->left, head);
@@ -29,45 +29,43 @@ void recreate(struct TreeNode* root, struct TreeNode * head){
     recreate(root->right, head);
 }
 
-struct TreeNode* increasingBST(struct TreeNode* root){
-    struct TreeNode *stack[150];
+struct TreeNode *increasingBST(struct TreeNode *root) {
+    struct TreeNode *stack[1500];
     int top = -1;
 //    stack[++top] = root;
 //
-    struct TreeNode * tmp = root;
+    struct TreeNode *tmp = root;
     struct TreeNode parent = {0, NULL, NULL};
     struct TreeNode *next = &parent;
-    while(root || top >= 0){
+    while (root || top >= 0) {
 
-        while(tmp){
+        while (tmp) {
             stack[++top] = tmp;
             tmp = tmp->left;
         }
 
-        tmp = stack[--top];
+        tmp = stack[top--];
 
-        if(tmp->right){
+        if (tmp) {
+            next->left = NULL;
+            next->right = tmp;
+            next = next->right;
             tmp = tmp->right;
         }
 
-        next->left = NULL;
-        next->right = tmp;
-        next = next->right;
     }
 
     return parent.right;
 
 }
 
-int main(){
+int main() {
 
-//    struct TreeNode * root = create();
-//
-//    struct TreeNode * new = increasingBST(root);
-//
-//    printf("%d\n", new->val);
-int * a = 3;
-printf("%d\n", *a);
+    struct TreeNode *root = create();
+
+    struct TreeNode *new = increasingBST(root);
+
+    printf("%d\n", new->val);
 
     return 0;
 }
