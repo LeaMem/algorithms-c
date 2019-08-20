@@ -16,26 +16,39 @@ int max(a, b) {
     return a > b ? a : b;
 }
 
-int longest(struct TreeNode *root) {
-    if(!root){
+int longest(struct TreeNode *root, int *ans) {
+    if (!root) {
         return 0;
     }
-    int left = longest(root->left);
-    int right = longest(root->right);
-    if(root->left && root->left->val == root->val){
-        left += 1;
+    int left = 1 + longest(root->left, ans);
+    int right = 1 + longest(root->right, ans);
+
+    if (!root->left || root->left->val != root->val) {
+        left = 0;
     }
-    if(root->right && root->right->val == root->val){
-        right += 1;
+    if (!root->right || root->right->val != root->val) {
+        right = 0;
     }
 
-    if(root->left && root->right && root->left->val == root->val && root->right->val == root->val){
-        return left + right;
-    }
+
+    *ans = max(*ans, left + right);
 
     return max(left, right);
 }
 
 int longestUnivaluePath(struct TreeNode *root) {
-    return longest(root);
+    int ans = 0;
+    longest(root, &ans);
+    return ans;
+}
+
+int main() {
+
+    struct TreeNode *root = create();
+
+    int ans = longestUnivaluePath(root);
+
+    printf("%d\n", ans);
+
+    return 0;
 }

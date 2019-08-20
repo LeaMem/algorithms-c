@@ -8,7 +8,7 @@
 
 void levelCreate(struct TreeNode *root, int *ans, int returnSize, int i) {
 
-    if (2 * i + 1 < returnSize && ans[2 * i + 1] != -1) {
+    if (2 * i + 1 <= returnSize && ans[2 * i + 1] != -1) {
         struct TreeNode *left = malloc(sizeof(struct TreeNode));
         left->val = ans[2 * i + 1];
         left->left = NULL;
@@ -17,7 +17,7 @@ void levelCreate(struct TreeNode *root, int *ans, int returnSize, int i) {
         levelCreate(left, ans, returnSize, 2 * i + 1);
     }
 
-    if (2 * i + 2 < returnSize & ans[2 * i + 2] != -1) {
+    if (2 * i + 2 <= returnSize & ans[2 * i + 2] != -1) {
         struct TreeNode *right = malloc(sizeof(struct TreeNode));
         right->val = ans[2 * i + 2];
         right->left = NULL;
