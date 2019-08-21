@@ -15,20 +15,6 @@
  * };
  */
 
-void recreate(struct TreeNode *root, struct TreeNode *head) {
-    if (!root) {
-        return;
-    }
-
-    recreate(root->left, head);
-    struct TreeNode *new = malloc(sizeof(struct TreeNode));
-    new->left = NULL;
-    new->val = root->val;
-    head->right = new;
-    head = new;
-    recreate(root->right, head);
-}
-
 struct TreeNode *increasingBST(struct TreeNode *root) {
     struct TreeNode *stack[1500];
     int top = -1;
@@ -37,7 +23,7 @@ struct TreeNode *increasingBST(struct TreeNode *root) {
     struct TreeNode *tmp = root;
     struct TreeNode parent = {0, NULL, NULL};
     struct TreeNode *next = &parent;
-    while (root || top >= 0) {
+    while (tmp || top >= 0) {
 
         while (tmp) {
             stack[++top] = tmp;
@@ -54,6 +40,8 @@ struct TreeNode *increasingBST(struct TreeNode *root) {
         }
 
     }
+    next->left = NULL;
+    next->right = NULL;
 
     return parent.right;
 
