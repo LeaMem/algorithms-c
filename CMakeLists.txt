@@ -8,4 +8,5 @@ add_subdirectory(others)
 add_subdirectory(list)
 add_subdirectory(tree)
 add_subdirectory(stack)
+add_subdirectory(heap)
 
