@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int m_heap[50];
-static int m_capacity = 50;
-static int m_size = 0;
+int m_heap[50];
+int m_capacity = 50;
+int m_size = 0;
 
 
 //向上调整
